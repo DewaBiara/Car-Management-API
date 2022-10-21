@@ -2,7 +2,16 @@ import Users from "../models/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
  
+
+// const Users = db.Users
 export const getUsers = async(req, res) => {
+    if (req.user.role == "member") {
+        res.status(401).json({
+          status: "Unauthorized",
+          message: "You are not authorized to get Users",
+        });
+        return;
+      }
     try {
         const users = await Users.findAll({
             attributes:['id','name','email']

@@ -1,7 +1,7 @@
 import Cars from "../models/CarsModel.js";
 import jwt from "jsonwebtoken";
  
-
+// const Cars = db.Cars
 export const getCars = async(req, res) => {
     if (req.user.role == "member") {
         res.status(401).json({
@@ -11,7 +11,7 @@ export const getCars = async(req, res) => {
         return;
       }
         const cars = await Cars.findAll({
-            attributes:['id','name','type','price','size','createdBy', 'updatedBy']
+            attributes:['id','name','type','price','size','createdBy', 'updatedBy','deletedBy']
         });
         res.json(cars);
 }
@@ -95,7 +95,6 @@ export const deleteCars = async(req, res) => {
     const dataBeforeDelete = await Cars.findOne({
     where: { id: id },
     });
-// if(tokenUser.role !="superadmin"){res.json()}
     const parsedDataProfile = JSON.parse(JSON.stringify(dataBeforeDelete));
 
     if (!parsedDataProfile) {

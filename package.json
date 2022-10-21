@@ -8,6 +8,8 @@
     "make-seed": "npx sequelize-cli seed:generate --name demo-user",
     "seed": "npx sequelize-cli db:seed:all",
     "migrate": "npx sequelize-cli db:migrate",
+    "make-model-user": "npx sequelize-cli model:generate --name UserModels --attributes name:string,email:string,password:string,role:string,refresh_token:text",
+    "make-model-cars": "npx sequelize-cli model:generate --name CarsModels --attributes name:string,type:string,price:string,size:string,createdBy:string,updatedBy:string,deletedBy:string",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,9 +19,9 @@
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "js-yaml": "^4.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
@@ -27,6 +29,5 @@
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
   },
-  "devDependencies": {},
   "description": ""
 }

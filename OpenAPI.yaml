@@ -1,0 +1,473 @@
+openapi: 3.0.0
+info:
+  title: Challange Chapter 6
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:8000/v1/api
+  variables: {}
+paths:
+  /register:
+    post:
+      tags:
+      - Users
+      summary: Register
+      operationId: Register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterRequest'
+              - example:
+                  name: Dewa Biara
+                  email: dewabiara12@gmail.com
+                  password: '123456'
+                  confPassword: '123456'
+            example:
+              name: Dewa Biara
+              email: dewabiara12@gmail.com
+              password: '123456'
+              confPassword: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /registrasi-admin:
+    post:
+      tags:
+      - Users
+      summary: Register Admin
+      operationId: RegisterAdmin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterAdminRequest'
+              - example:
+                  name: admin
+                  email: admin@gmail.com
+                  password: '123456'
+                  confPassword: '123456'
+                  role: admin
+            example:
+              name: admin
+              email: admin@gmail.com
+              password: '123456'
+              confPassword: '123456'
+              role: admin
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /login:
+    post:
+      tags:
+      - Users
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginRequest'
+              - example:
+                  email: superadmin@gmail.com
+                  password: '123456'
+            example:
+              email: superadmin@gmail.com
+              password: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+      - Users
+      summary: GET ALL USERS
+      operationId: GETALLUSERS
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /user/{id}:
+    put:
+      tags:
+      - Users
+      summary: Update User
+      operationId: UpdateUser
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 2
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUserRequest'
+              - example:
+                  name: Budi Updated
+                  email: budi@gmail.com
+                  password: '123456'
+                  confPassword: '123456'
+            example:
+              name: Budi Updated
+              email: budi@gmail.com
+              password: '123456'
+              confPassword: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /whoami:
+    get:
+      tags:
+      - Users
+      summary: Who Am'I
+      operationId: WhoAm'I
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /logout:
+    delete:
+      tags:
+      - Users
+      summary: Logout
+      operationId: Logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /token:
+    get:
+      tags:
+      - Users
+      summary: Token
+      operationId: Token
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /cars:
+    get:
+      tags:
+      - Cars
+      summary: GET ALL DATA
+      operationId: GETALLDATA
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /car/{id}:
+    get:
+      tags:
+      - Cars
+      summary: GET BY ID
+      operationId: GETBYID
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    put:
+      tags:
+      - Cars
+      summary: UPDATE CAR
+      operationId: UPDATECAR
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 4
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UPDATECARREQUEST'
+              - example:
+                  name: Honda Brio
+                  type: City Car
+                  price: '400000'
+                  size: Medium
+            example:
+              name: Honda Brio
+              type: City Car
+              price: '400000'
+              size: Medium
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Cars
+      summary: DELETE CAR
+      operationId: DELETECAR
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 2
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /car:
+    post:
+      tags:
+      - Cars
+      summary: CREATE CAR
+      operationId: CREATECAR
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CREATECARREQUEST'
+              - example:
+                  name: Honda Brio 2
+                  type: City Car
+                  price: '300000'
+                  size: Small
+            example:
+              name: Honda Brio 2
+              type: City Car
+              price: '300000'
+              size: Small
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+      - name
+      - email
+      - password
+      - confPassword
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confPassword:
+          type: string
+      example:
+        name: Dewa Biara
+        email: dewabiara12@gmail.com
+        password: '123456'
+        confPassword: '123456'
+    RegisterAdminRequest:
+      title: RegisterAdminRequest
+      required:
+      - name
+      - email
+      - password
+      - confPassword
+      - role
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confPassword:
+          type: string
+        role:
+          type: string
+      example:
+        name: admin
+        email: admin@gmail.com
+        password: '123456'
+        confPassword: '123456'
+        role: admin
+    LoginRequest:
+      title: LoginRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: superadmin@gmail.com
+        password: '123456'
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+      - name
+      - email
+      - password
+      - confPassword
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confPassword:
+          type: string
+      example:
+        name: Budi Updated
+        email: budi@gmail.com
+        password: '123456'
+        confPassword: '123456'
+    LogoutRequest:
+      title: LogoutRequest
+      required:
+      - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+      example:
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJEZXdhIEJpYXJhIiwiZW1haWwiOiJkZXdhYmlhcmFAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY2Mjc2OTQxLCJleHAiOjE2ODIwODgxNDF9.pma6Ta0ZJ_GSfiTbEi6zBTPqUazkS7wbnuTaGZcWRnc
+    CREATECARREQUEST:
+      title: CREATECARREQUEST
+      required:
+      - name
+      - type
+      - price
+      - size
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        price:
+          type: string
+        size:
+          type: string
+      example:
+        name: Honda Brio 2
+        type: City Car
+        price: '300000'
+        size: Small
+    UPDATECARREQUEST:
+      title: UPDATECARREQUEST
+      required:
+      - name
+      - type
+      - price
+      - size
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        price:
+          type: string
+        size:
+          type: string
+      example:
+        name: Honda Brio
+        type: City Car
+        price: '400000'
+        size: Medium
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Users
+- name: Cars
